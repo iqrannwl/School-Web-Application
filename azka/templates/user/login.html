@@ -1,0 +1,56 @@
+
+{%extends '../base.html'%}
+{%load static%}
+{%block content %}
+ <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-push-3">
+          <h4 class="text-gray mt-0 pt-5">Make sure you are Register Student</h4>
+          <hr>
+          <p>
+            {% if form.non_field_errors%}
+            {% for error in form.non_field_errors %}
+            <small style="color:gold">{{error}}</small><br>
+            {% endfor %}
+            {% endif %}
+
+          </p>
+          <form method="POST">
+            {% csrf_token %}
+              
+            <div class="row">
+              {% if messages %}
+            {% for message in messages %}
+            
+            <span style="color:red; ">{{message}}</span>
+
+            {% endfor %}
+            {% endif %}
+          
+              <div class="form-group col-md-12">
+                {%for fm in form%}
+                <label for="form_username_email">{{fm.label_tag}}</label>
+                {{fm|linebreaks}}
+                {{fm.errors|striptags|linebreaks}}</span>
+                {%endfor%}
+                </div>
+            </div>
+
+            <div class="form-group ">
+                
+              <input type="submit" value="Login" class="btn  mb-3 ml-3">
+              <a href="{%url 'sign_up'%}" style="text-decoration: none;" class="btn  mb-3 ml-3">Registration</a>
+              <a href="/admin" style="text-decoration: none;" class="btn  mb-3 ml-3">Login As Admin</a> 
+                
+            </div>
+             
+          </form>
+        </div>
+      </div>
+    </div>
+</section> 
+{%endblock content%}
+
+
+ 

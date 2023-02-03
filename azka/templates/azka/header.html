@@ -1,0 +1,105 @@
+{%load static %}
+    <div class="header-middle p-1 bg-lightest">
+      <div class="container-fluid my-5">
+        <div class="row my-1">
+          <div class="col-xs-12 col-sm-4 col-md-5">
+            <div style="margin:10px">
+              <a  href="/"><img src="/static/azka/images/bg/logo.jpeg" width="35%" class="shadow rounded" style="border-radius:100%/10px;box-shadow: 10px -14px 400px -200px  rgba(0,213,0,0.75);" alt=""></a>
+            </div>
+          </div>
+          
+         
+        </div>
+     </div>
+
+       <div class="header-nav">
+        <div class="header-nav-wrapper navbar-scrolltofixed bg-theme-colored border-bottom-theme-color-2-1px">
+        
+          <div class="container-fluid">
+            <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
+             
+              <ul class="menuzord-menu" >
+              
+                <li>
+                  <a class="panle active" href="{%url 'home'%}">Home</a>  
+                </li>
+                
+                <li>
+                  <a class="panle" href="{%url 'about'%}">About</a>
+                </li>
+                <li>
+                  <a class="panle" href="{%url 'contact'%}">Contact</a>
+                </li>
+                {% if request.session.user == True %}
+                <li>
+                  <a class="panle" href="{%url 'student'%}">Students</a>
+                </li>
+                {%else%}
+                <li>
+                  <a class="panle" href="{%url 'static_student' %}">Students</a>
+                </li>
+                {%endif%} 
+                </li>
+                <li>
+                  <a class="panle" href="{%url 'gallery' %}">Gallery</a>
+                </li>
+                <li>
+                  <a class="panle" href="{%url 'project' %}">Projects</a>
+                </li>
+                <li>
+                  <a class="panle" href="{%url 'event' %}">Events</a>   
+                </li>
+                {% if request.session.user == True %}
+                <li>
+                
+                  <a class="panle" href="{%url 'log_out' %}">Logout</a>
+                  
+                </li>           
+              {%else%}
+                <li>
+                  <a class="panle" href="{%url 'log_in' %}">Login</a>
+                </li>
+              {%endif%}
+              {% if request.session.user == True %}
+              <li>
+              
+                <a class="panle" href="{%url 'profile' request.session.id %}">Profile</a>
+                
+              </li>           
+            {%else%}
+              <li>
+                <a class="panle" href="#"></a>
+              </li>
+            {%endif%}
+              </ul>              
+            </nav>
+          </div>
+        </div>
+      </div>
+   
+  
+</header>
+<style>
+ 
+  .panle.active1{
+
+    background-color:white;
+  }
+</style>
+<script>
+  
+const panels=document.querySelectorAll('.panle')
+
+panels.forEach(panel =>{
+    panel.addEventListener('click',()=>{
+        removeActiveClasses()
+        panel.classList.add('active1')
+    })
+})
+
+function removeActiveClasses(){
+    panels.forEach(panel =>{
+        panel.classList.remove('active1')
+    })
+}
+</script>

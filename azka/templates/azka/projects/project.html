@@ -1,0 +1,43 @@
+   {%extends '../../base.html'%}
+   {%load static %}
+  {%block content%}
+  <title>
+    {% block title%}
+    Projects
+    {% endblock %}
+    </title>
+
+  {% if projects %}  
+   <section class="bg-lighter">
+    <div class="container"> 
+        <div class="row">
+          {% for project in projects %}
+          <div class="col-sm-6 col-md-6 col-lg-6">
+
+                  <div class="thumb"> 
+                    <img alt="featured project" src="{{ project.image.url }}" class="img-responsive img-fullwidth" style="height:320px !important;">  
+                 <h4 class="text-white mt-0 mb-0"><span class="price">{{project.amount_required}}</span></h4>
+                  </div>
+                  <div class="content text-left flip p-25 pt-0">
+                    <h4 class="line-bottom mb-10">{{project.title}}</h4>
+                    <p>{{project.detail|truncatewords:10}}</p>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{%url 'projectdetail' project.id %}">view details</a>
+                  </div>
+ 
+          </div> 
+          {%endfor%}
+      
+        </div>
+    </div>
+  </section>
+  {%else %}
+  <div class="container">
+    <h1 class="text-center">
+      Project Not Found
+    </h1>
+  </div>
+  {%endif%} 
+
+  {%endblock content%}
+  
+  

@@ -1,0 +1,67 @@
+{%extends '../../base.html'%}
+{%load static %}
+{%block content %}
+<title>
+  {% block title%}
+  {{user.Full_name}} Details
+  {% endblock %}
+  </title>
+{%if user %}
+<section>
+    <div class="container">
+      <div class="section-content">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="thumb">
+              <img src="{{user.image.url}}" width="100%" alt="">
+            </div>
+            
+             <div class="volunteer-address">
+              <ul>
+                <li>
+                  <div class="bg-light media border-bottom p-15">
+                    <div class="media-left">
+                      <i class="fa fa-phone text-theme-colored font-24 mt-5"></i>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-0">Contact:</h5>
+                      <p><span>Phone:</span>{{user.phone_no}}<br><span>Email:</span>{{user.email}}</p>
+                    </div>
+                  </div>
+                </li>
+              
+                <li>
+                  <div class="bg-light media border-bottom p-15 mb-20">
+                    <div class="media-left">
+                      <i class="fa fa-map-marker text-theme-colored font-24 mt-5"></i>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-0">Address:</h5>
+                      <p>{{user.address}}</p>
+                    </div>
+                  </div>
+                </li>
+               
+              </ul>
+            </div>
+         
+         
+          </div>
+          <div class="col-md-8 mt-5">
+            <h4 class="name font-24 mt-0 mb-0">{{user.Full_name}}</h4>
+            <hr>
+            <h5 class="mt-5 text-theme-color-2"><b>Designation:</b>&nbsp;&nbsp;<i>{{user.designation}}</i></h5>
+            <p>
+              <b>Department</b> &nbsp;&nbsp;<i> {{user.department}}</i>
+            </p>
+            <p style="text-align: justify;">
+               <b>Reponsibities</b><br> {{user.reponsibities}}
+            </p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{%endif%}
+{%endblock content%}

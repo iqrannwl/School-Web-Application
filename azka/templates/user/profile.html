@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block title %}Profile{% endblock %}
+{% block content%}
+
+
+
+<div class="container mt-3">
+       
+  {% if messages %}
+  {% for message in messages %}
+  <h4 class="alert alert-success">
+  {% if message.tags %}
+  <span style="color:green">{{ message.tags }} </span> <span style="color:red" class="alert alert-success">  {% endif %}
+  {{message}}
+</span>
+  {% endfor %}
+  {% endif %}
+</h4>
+</div>
+<section class="">
+        <div class="container">
+          <div class="section-content">
+            <div class="row">
+              <div class="col-sx-12 col-sm-4 col-md-4">
+                <div class="doctor-thumb">
+                
+                {%if user.image %}
+                <img src="{{user.image.url}}" width="100%" alt="">
+                {%else%}
+                <img src="/static/azka/images/bg/logo.jpeg" alt="">
+                {%endif%}
+                </div>
+                <a href="{%url 'edit' user.id %}" class="btn  mt-5"> Change image</a>  
+              </div>
+              <div class="col-xs-12 col-sm-8 col-md-8">
+                <form action="/profile/{{user.id}}" method="POST" novalidate enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form.non_field_errors%}
+                    {%for error in form.non_field_errors%}
+                    <p>{{error}}<p>
+                    {%endfor%}
+                    {% endif %}
+                  <hr>
+                    <div class="row">
+                    {% for fm in form %}
+                    <div class="form-group col-md-6">
+                      <label>{{fm.label_tag }}</label>
+                      {{fm}}{{fm.errors}}
+                    </div>
+                    {% endfor %}      
+                   <input type="submit" class="btn btn-dark ml-5" value="Save">  
+                </form>            
+                <hr class="mt-70 mb-70">
+              </div>
+            </div>
+          </div>
+        </div>
+</section>
+
+
+
+{% endblock content %}

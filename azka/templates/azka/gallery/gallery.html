@@ -1,0 +1,63 @@
+{%extends '../../base.html'%}
+{%load static%}
+{%block content%}
+
+<title>
+  {% block title%}
+  Gallery
+  {% endblock %}
+</title>
+
+<div id="wrapper" class="clearfix"></div>
+
+    <!-- Section: Gallery -->
+
+    <section id="gallery" class="bg-lighter">
+      <div class="container">
+         <div class="section-title mb-10">
+           <div class="row">
+             <div class="col-md-12">
+               <h2 class="mt-0 text-uppercase text-theme-colored title line-bottom line-height-1">Our<span class="text-theme-color-2 font-weight-400"> Gllery</span></h2>
+             </div>
+           </div>
+         </div>
+         <div class="section-content">
+           <div class="row">
+             <div class="col-md-12">
+
+               <div id="grid" class="gallery-isotope grid-4 gutter clearfix">
+                 
+                 {%for g in gallery%}
+                 <div class="gallery-item select1">
+                   
+                   <div class="thumb">
+                     <img class="img-fullwidth shadow" src="{{g.image.url}}" alt="project" style="height:200px; width:200px">
+                     <div class="overlay-shade"></div>
+                     <div class="icons-holder">
+                       <div class="icons-holder-inner">
+                         <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                           <a data-lightbox="image" href="{{g.image.url}}"><i class="fa fa-plus"></i></a>
+                           <a href="#"><i class="fa fa-link"></i></a>
+                         </div>
+                       </div>
+                     </div>
+                     <a class="hover-link" data-lightbox="image" href="{{g.image.url}}" >View more</a>
+                   </div>
+                 
+                 </div>
+                 {%endfor%}
+
+    
+                 
+                 
+               </div>
+
+             </div>
+           </div>
+         </div>
+       </div >
+    </section>
+  
+
+
+    {%endblock content %}

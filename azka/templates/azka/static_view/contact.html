@@ -1,0 +1,26 @@
+{%extends '../../base.html'%}
+{%load static %}
+{%block content%}
+<title>
+  {% block title%}
+  Contact Us
+  {% endblock %}
+  </title>
+
+<div style="margin:80px" class="container-fluid">
+    <h1>Contact</h1>
+    <h4>Contact us directly if you have any questions</h4>
+    <p>
+        Please write your name, email address and a message below if you have any questions.
+        One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+    </p>
+    <form method="post">
+    {% csrf_token %}
+        {{form}}
+        <br>
+        <button type="submit" class="btn btn-success mt-4">Submit</button>
+    </form>
+</div>
+{%endblock%}
+
+

@@ -1,0 +1,128 @@
+{%extends 'azka/testimonial/base.html'%}
+{% load static %}
+    {% block title%}Create_testimonial{% endblock %}
+    
+    {% block content %}
+
+    <header id="header" class="header">
+        <div class="header-middle p-0 bg-lightest xs-text-center">
+          <div class="container pt-0 pb-0">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 col-md-5">
+                <div class="widget no-border m-0">
+                  <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="{%static 'azka/images/logo-wide.png' %}" alt=""></a>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4">
+                <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
+                  <ul class="list-inline">
+                    <li><i class="fa fa-phone-square text-theme-colored font-36 mt-5 sm-display-block"></i></li>
+                    <li>
+                      <a href="#" class="font-12 text-gray text-uppercase">Call us today!</a>
+                      <h5 class="font-14 m-0"> 03013076823</h5>
+                    </li>
+                  </ul>
+                </div>
+              </div>  
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
+                  <ul class="list-inline">
+                    <li><i class="fa fa-clock-o text-theme-colored font-36 mt-5 sm-display-block"></i></li>
+                    <li>
+                      <a href="#" class="font-12 text-gray text-uppercase">We are open!</a>
+                      <h5 class="font-13 text-black m-0"> Mon-Fri 8:00-16:00</h5>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-nav">
+          <div class="header-nav-wrapper navbar-scrolltofixed bg-theme-colored border-bottom-theme-color-2-1px">
+            <div class="container">
+              <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
+                <ul class="menuzord-menu">
+                  <li class="active"><a href="#">Home</a>
+                    
+                  </li>
+                  <li ><a href="#about">About</a>
+                    
+                  </li>
+                  <li ><a href="#contact">Contact</a>
+                    
+                  </li>
+                  <li><a href="#">Gallery</a>
+                    
+                  </li>
+                  <li ><a href="#">Projects</a>
+                    
+                  </li>
+                  <li ><a href="#">Events</a>
+                    
+                  </li>
+                </ul>
+                <ul class="pull-right flip hidden-sm hidden-xs">
+                  <li>
+                    <!-- Modal: Book Now Starts -->
+                    <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal"  href="#">Login</a>
+                    <!-- Modal: Book Now End -->
+                  </li>
+                </ul>
+                <div id="top-search-bar" class="collapse">
+                  <div class="container">
+                    <form role="search" action="#" class="search_form_top" method="get">
+                      <input type="text" placeholder="Type text and press Enter..." name="s" class="form-control" autocomplete="off">
+                      <span class="search-close"><i class="fa fa-search"></i></span>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </header>
+      
+      
+      <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{%static 'azka/images/bg/bg5.jpg' %}">
+        <div class="container pt-70 pb-20">
+          <!-- Section Content -->
+          <div class="section-content">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="title text-white">{{name}}</h2>
+                <ol class="breadcrumb text-left text-black mt-10">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Pages</a></li>
+                  <li class="active text-gray-silver">Page Title</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<div class="container">
+    <h3>Add Project</h3>
+    <hr>
+    <!--message-->
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<span style="color:green; font-size:30px">{{ message.tags }} :</span> 
+{% endif %}
+<span style="color:red; ">{{message}}</span>
+
+{% endfor %}
+{% endif %}
+    <!--end message-->
+<form action="" method="POST"  class=" mr-5 mt-5 ml-5 mb-5" enctype="multipart/form-data" novalidate>
+
+    {% csrf_token %}
+    {{form}} 
+    <input type="submit" value="Submit" class="btn btn-success ml-2 mt-5 mb-5">
+    <a href="{%url 'home'%}" style="text-decoration:none" class="btn btn-info text-white"> Cancle</a>
+
+</form>
+</div>
+{% endblock content%}

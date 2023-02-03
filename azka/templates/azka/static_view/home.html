@@ -1,0 +1,217 @@
+{%extends 'azka/static_view/base.html'%}
+{%load static %}
+{%block content%}
+<title>
+  {% block title%}
+  Azka School
+  {% endblock %}
+  </title>
+
+<!-- ----------------------slider -->
+
+{%include 'azka/static_view/slider.html'%}
+{%include 'azka/static_view/static_about.html' %}
+<!-- ______________Our Project_____________________________________ -->
+<section class="bg-lighter" id="project">
+             <div class="container pb-60">
+               <div class="section-title mb-10">
+               <div class="row">
+                 <div class="col-md-8">
+                   <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Our <span class="text-theme-color-2 font-weight-400">PROJECTS</span></h2>
+                </div>
+               </div>
+               </div>
+               <div class="section-content">
+                 {% if projects %}
+                 <div class="row">
+                   <div class="col-md-12">
+                     <div class="owl-carousel-4col" data-dots="true">
+                       
+                       {% for project in projects %}
+                       <div class="item">
+                         <div class="service-block mb-md-30 bg-white">
+                           <div class="thumb"> <img alt="featured project" src="{{ project.image.url }}" class="img-responsive img-fullwidth" style="height:200px !important;">
+             
+                          <h4 class="text-white mt-0 mb-0"><span class="price">{{project.amount_required}}</span></h4>
+                           </div>
+                           <div class="content text-left flip p-25 pt-0">
+                             <h4 class="line-bottom mb-10">{{project.title}}</h4>
+                             <p>{{project.detail|truncatewords:10}}</p>
+                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{%url 'projectdetail' project.id %}">view details</a>
+                           </div>
+                         </div>
+                       </div>
+                       {%endfor%}
+                 
+         
+                       
+                     </div> 
+                   </div> 
+                 </div>
+         
+         
+                 {%else %}
+                 <h1 class="alert alert-danger">
+                  Not Found
+                </h1>
+                 {%endif%}
+         
+         
+               </div>
+             </div>
+</section>
+           
+{%include 'azka/static_view/funfact.html' %}
+
+{%if events %}
+<section>
+  <div class="container"> 
+   
+    <div >
+      <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Latest <span class="text-theme-color-2 font-weight-400">Events</span></h2>
+   </div>
+
+      <div class="row">
+       
+        {%for event in events%}
+        <div class="col-xs-12  col-sm-4 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+          <article class="post clearfix mb-sm-30">
+            <div class="entry-header">
+              <div class="post-thumb thumb"> 
+                <img src="{{event.image.url}}" width="100%" height="300px" alt="" class="image-fluid"> 
+              </div>
+            </div>
+            <div class="entry-content p-20 pr-10 bg-white">
+              <div class="entry-meta media mt-0 no-bg no-border">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <ul>
+                    <li class="font-16 text-white font-weight-600 border-bottom">{{event.date}}</li>
+                  </ul>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip">
+                    <h4 class="entry-title text-uppercase m-0 mt-5">{{event.title}}</h4>         
+                  <hr>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-10">{{event.detail|truncatewords:10}}</p>
+              <a href="{% url 'eventdetail' event.id %}" class="btn-read-more">Read more</a>
+              <div class="clearfix"></div>
+            </div>
+          </article>
+        </div>
+       
+        {%endfor%}
+        <br>
+      </div>
+      
+  
+  </div>
+</section>
+{%else%}
+   <div class="container">
+     <h1 class="text-center alert alert-danger">
+       Event Not Found
+     </h1>
+   </div>
+{%endif%}
+<!-- gallery -->
+<section id="gallery" class="bg-lighter">
+  <div class="container">
+     <div class="section-title mb-10">
+       <div class="row">
+         <div class="col-md-12">
+           <h2 class="mt-0 text-uppercase text-theme-colored title line-bottom line-height-1">Our<span class="text-theme-color-2 font-weight-400"> Gllery</span></h2>
+         </div>
+       </div>
+     </div>
+     <div class="section-content">
+       <div class="row">
+         <div class="col-md-12">
+           <!-- Works Filter -->
+          
+           <!-- End Works Filter -->
+           
+           <!-- Portfolio Gallery Grid -->
+           <div id="grid" class="gallery-isotope grid-4 gutter clearfix">
+             
+             <!-- Portfolio Item Start -->
+             {%for g in gallery%}
+             <div class="gallery-item select1">
+               
+               <div class="thumb">
+                 <img class="img-fullwidth" src="{{g.image.url}}" style="height:200px;width:200px;" alt="project">
+                 <div class="overlay-shade"></div>
+                 <div class="icons-holder">
+                   <div class="icons-holder-inner">
+                     <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                       <a data-lightbox="image" href="{{g.image.url}}"><i class="fa fa-plus"></i></a>
+                       <a href="#"><i class="fa fa-link"></i></a>
+                     </div>
+                   </div>
+                 </div>
+                 <a class="hover-link" data-lightbox="image" href="{{g.image.url}}">View more</a>
+               </div>
+             
+             </div>
+             {%endfor%}
+             <!-- Portfolio Item End -->
+
+             
+             
+           </div>
+           <!-- End Portfolio Gallery Grid -->
+         </div>
+       </div>
+     </div>
+   </div >
+</section>
+<!-- endgallery -->
+
+{%if testimonials %}
+<section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="images/bg/bg2.jpg'%}">
+  <div class="container pb-50">
+    <div class="section-title">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="font-weight-300 m-0 text-gray-lightgray">Happy Student</h5>
+          <h2 class="mt-0 mb-0 text-uppercase line-bottom text-white font-28">Testimonials<span class="font-30 text-theme-color-2">.</span></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12 mb-10">
+        <div class="owl-carousel-2col boxed" data-dots="true">
+          {%for testimonial in testimonials%}
+          <div class="item">
+            <div class="testimonial pt-10">
+              <div class="thumb pull-left mb-0 mr-0 pr-20">
+                <img width="75"  style="width: 70px; height:75px; border-radius:50%" class="img-circle" alt="" src="{{testimonial.image.url}}">
+              </div>
+              <div class="ml-100 ">
+                <h4 class="text-white mt-0">{{testimonial.desc|truncatewords:10}}</h4>
+                <p class="author mt-20">- <span class="h3 text-white">{{testimonial.name}}</span></p>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+
+        </div> 
+      </div>
+    </div>
+  </div>
+
+
+</section>
+{%else%}
+<h1 class="alert alert-danger text-center">
+   Not Found
+</h1>
+{%endif%}
+
+{%endblock content%}
+
+   

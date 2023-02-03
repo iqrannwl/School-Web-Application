@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content %}
+
+
+
+ <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="text-gray mt-0 pt-5">Registration</h4>
+          <hr>
+          <p>
+            {% if form.non_field_errors%}
+            {% for error in form.non_field_errors %}
+            <small style="color:gold">{{error}}</small><br>
+            {% endfor %}
+            {% endif %}
+            {% if messages %}
+            {% for message in messages %}
+            <span style="color:red; ">{{message}}</span>
+            {% endfor %}
+            {% endif %}
+          <form   method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              {%for fm in form%}
+              <div class="form-group col-md-6 offset-2">
+                <label>{{fm.label_tag}}</label>
+                {{fm|linebreaks}}
+                {{fm.errors|striptags}}</span>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="form-group ">
+                <input type="submit" value="Submit" class="btn btn-outline-success mb-3 ml-3">
+               </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section> 
+
+{%endblock content%}
+
+
+ 
